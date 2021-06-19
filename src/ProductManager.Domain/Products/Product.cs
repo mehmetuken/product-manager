@@ -12,6 +12,7 @@ namespace ProductManager.Products
 
         public string Description { get; set; }
 
+        [CanBeNull]
         public Category Category { get; set; }
 
         public Guid? CategoryId { get; set; }
