@@ -25,9 +25,9 @@ namespace ProductManager.Products
 
             // Global filter to products to be live.
             queryable = AddGlobalFilter(queryable);
-            
+
             queryable = queryable.WhereIf(
-                string.IsNullOrEmpty(query),
+                !string.IsNullOrEmpty(query),
                 x => x.Title.Contains(query) || x.Description.Contains(query) ||
                      x.Category.Name.Contains(query)
             );
@@ -41,8 +41,8 @@ namespace ProductManager.Products
         private IQueryable<Product> AddGlobalFilter(IQueryable<Product> queryable)
         {
             return queryable
-                .Where(x => x.CategoryId != null)
-                .Where(x => x.StockQuantity >= x.Category.MinStockQuantity);
+                .Where(new ProductCategorySelectedSpefication().ToExpression())
+                .Where(new ProductQuantityNotLowerCategoryLevelSpecification().ToExpression());
         }
     }
 }
