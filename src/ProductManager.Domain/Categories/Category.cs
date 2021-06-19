@@ -18,7 +18,7 @@ namespace ProductManager.Categories
 
         public Category(Guid id, [NotNull] string name, int minStockQuantity) : base(id)
         {
-            Name = Check.NotNullOrEmpty(name, nameof(name));
+            Name = Check.NotNullOrEmpty(name, nameof(name), CategoryConsts.MaxNameLength);
             MinStockQuantity = minStockQuantity;
         }
     }
