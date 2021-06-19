@@ -25,7 +25,7 @@ namespace ProductManager.Products
 
         public Product(Guid id,[NotNull] string title, int stockQuantity) : base(id)
         {
-            Title = Check.NotNullOrEmpty(title,nameof(title));
+            Title = Check.NotNullOrEmpty(title,nameof(title), ProductConsts.MaxNameLength);
             StockQuantity = stockQuantity;
         }
     }
