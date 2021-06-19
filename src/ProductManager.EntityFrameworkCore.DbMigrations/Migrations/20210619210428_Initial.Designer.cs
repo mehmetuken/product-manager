@@ -11,7 +11,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace ProductManager.Migrations
 {
     [DbContext(typeof(ProductManagerMigrationsDbContext))]
-    [Migration("20210619194454_Initial")]
+    [Migration("20210619210428_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -91,9 +91,6 @@ namespace ProductManager.Migrations
                     b.Property<Guid?>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("CategoryId1")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasMaxLength(40)
@@ -148,8 +145,6 @@ namespace ProductManager.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("CategoryId1");
 
                     b.ToTable("AppProducts");
                 });
@@ -2072,13 +2067,9 @@ namespace ProductManager.Migrations
 
             modelBuilder.Entity("ProductManager.Products.Product", b =>
                 {
-                    b.HasOne("ProductManager.Categories.Category", null)
-                        .WithMany()
-                        .HasForeignKey("CategoryId");
-
                     b.HasOne("ProductManager.Categories.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryId1");
+                        .HasForeignKey("CategoryId");
 
                     b.Navigation("Category");
                 });

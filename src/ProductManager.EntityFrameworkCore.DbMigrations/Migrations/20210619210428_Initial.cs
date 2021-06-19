@@ -718,7 +718,6 @@ namespace ProductManager.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CategoryId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     StockQuantity = table.Column<int>(type: "int", nullable: false),
                     ExtraProperties = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -737,12 +736,6 @@ namespace ProductManager.Migrations
                     table.ForeignKey(
                         name: "FK_AppProducts_AppCategories_CategoryId",
                         column: x => x.CategoryId,
-                        principalTable: "AppCategories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_AppProducts_AppCategories_CategoryId1",
-                        column: x => x.CategoryId1,
                         principalTable: "AppCategories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -1244,11 +1237,6 @@ namespace ProductManager.Migrations
                 name: "IX_AppProducts_CategoryId",
                 table: "AppProducts",
                 column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AppProducts_CategoryId1",
-                table: "AppProducts",
-                column: "CategoryId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_IdentityServerClients_ClientId",
