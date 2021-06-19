@@ -16,17 +16,17 @@ namespace ProductManager.EntityFrameworkCore
             {
                 b.ToTable(ProductManagerConsts.DbTablePrefix + "Categories", ProductManagerConsts.DbSchema);
                 b.ConfigureByConvention(); //auto configure for the base class props
-                
+
                 b.Property(x => x.Name).IsRequired().HasMaxLength(CategoryConsts.MaxNameLength);
             });
-            
+
             builder.Entity<Product>(b =>
             {
                 b.ToTable(ProductManagerConsts.DbTablePrefix + "Products", ProductManagerConsts.DbSchema);
                 b.ConfigureByConvention(); //auto configure for the base class props
-                
+
                 b.Property(x => x.Title).IsRequired().HasMaxLength(ProductConsts.MaxNameLength);
-                b.HasOne<Category>().WithMany().HasForeignKey(x => x.CategoryId);
+                b.HasOne(x => x.Category).WithMany().HasForeignKey(x => x.CategoryId);
             });
         }
     }
