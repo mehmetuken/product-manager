@@ -16,7 +16,7 @@ namespace ProductManager.Products
             _productRepository = productRepository;
         }
 
-        public async Task<IEnumerable<Product>> GetAllProducts(
+        public virtual async Task<IEnumerable<Product>> GetAllProducts(
             string query,
             int? minStockCount = null,
             int? maxStockCount = null)
