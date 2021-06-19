@@ -17,7 +17,7 @@ namespace ProductManager.Products
         }
 
         public virtual async Task<IEnumerable<Product>> GetAllProducts(
-            string query,
+            string query = null,
             int? minStockCount = null,
             int? maxStockCount = null)
         {
